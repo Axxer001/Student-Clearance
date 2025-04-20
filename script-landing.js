@@ -1,6 +1,4 @@
-// =========================
-// Sidebar Toggle Functionality
-// =========================
+//Toggle Sidebar
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const sidePanel = document.getElementById('side-panel');
 
@@ -19,9 +17,7 @@ document.addEventListener('click', () => {
     }
 });
 
-// =========================
-// Notification Popup Toggle
-// =========================
+//NOtification popup
 const bellIcon = document.querySelector('.notification-bell');
 const popup = document.getElementById('notification-popup');
 
@@ -40,17 +36,13 @@ if (bellIcon && popup) {
     });
 }
 
-// =========================
-// Logout Functionality
-// =========================
+//Site logout
 document.getElementById("logout-btn").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "index.html";
 });
 
-// =========================
-// Progress Bar Functionality
-// =========================
+//Progress bar
 function updateProgressBar() {
     const totalTasks = document.querySelectorAll('.task-card').length;
     const finishedTasks = document.querySelectorAll('.task-card.finished').length;
@@ -85,9 +77,7 @@ function updateProgressBar() {
     }
 }
 
-// =========================
-// Dynamic Task Card Rendering
-// =========================
+//Dynamic Task cards
 const taskGrid = document.querySelector(".task-grid");
 
 const tasks = [
@@ -122,9 +112,7 @@ tasks.forEach(task => {
 
 updateProgressBar();
 
-// =========================
-// Modal Functionality
-// =========================
+//Task card functionality
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("task-modal");
     const closeModalBtn = modal.querySelector(".close-modal");
