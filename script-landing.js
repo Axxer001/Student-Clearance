@@ -1,4 +1,4 @@
-//Toggle Sidebar
+//SIDEBAR FUNCTION
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const sidePanel = document.getElementById('side-panel');
 
@@ -17,7 +17,7 @@ document.addEventListener('click', () => {
     }
 });
 
-//NOtification popup
+//NOTIF POPUP
 const bellIcon = document.querySelector('.notification-bell');
 const popup = document.getElementById('notification-popup');
 
@@ -36,13 +36,13 @@ if (bellIcon && popup) {
     });
 }
 
-//Site logout
+//LOGOUT
 document.getElementById("logout-btn").addEventListener("click", function (e) {
     e.preventDefault();
     window.location.href = "index.html";
 });
 
-//Progress bar
+//PROGRESS BARZ
 function updateProgressBar() {
     const totalTasks = document.querySelectorAll('.task-card').length;
     const finishedTasks = document.querySelectorAll('.task-card.finished').length;
@@ -77,16 +77,16 @@ function updateProgressBar() {
     }
 }
 
-//Dynamic Task cards
+//TASK CARD RENDERER
 const taskGrid = document.querySelector(".task-grid");
 
 const tasks = [
-    { name: "LANDREI RAFANAN ZERNA", role: "PhiCSS", due: "April 25, 2025", status: "unfinished" },
-    { name: "JUAN DELA CRUZ", role: "Library", due: "April 30, 2025", status: "unfinished" },
-    { name: "MARIA CLARA", role: "Guidance Office", due: "May 1, 2025", status: "unfinished" },
+    { name: "JUAN LUNA", role: "PhiCSS", due: "April 25, 2025", status: "unfinished" },
+    { name: "HENERAL GOYO", role: "CSC", due: "April 30, 2025", status: "unfinished" },
+    { name: "MARIA CLARA LORENZO LOBREGAT", role: "Divisoria Representative", due: "May 1, 2025", status: "unfinished" },
     { name: "JOSE RIZAL", role: "Cashier", due: "April 22, 2025", status: "finished" },
-    { name: "JUAN DELA CRUZ", role: "Library", due: "April 30, 2025", status: "unfinished" },
-    { name: "JUAN DELA CRUZ", role: "Library", due: "April 30, 2025", status: "unfinished" }
+    { name: "NAPOLEON BONAPARTE", role: "Library", due: "April 30, 2025", status: "unfinished" },
+    { name: "JULIUS CAESAR", role: "Library", due: "April 30, 2025", status: "unfinished" }
 ];
 
 tasks.forEach(task => {
@@ -112,14 +112,56 @@ tasks.forEach(task => {
 
 updateProgressBar();
 
-//Task card functionality
+//MODAL FUNCTIONS
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("task-modal");
     const closeModalBtn = modal.querySelector(".close-modal");
     const markFinishedBtn = modal.querySelector(".mark-finished");
     const statusTextElement = modal.querySelector("p:nth-child(4)");
+    const proofSection = modal.querySelector(".proof-upload-section");
+    const submitProofBtn = proofSection.querySelector(".submit-proof");
+    const cancelProofBtn = proofSection.querySelector(".cancel-proof");
+    const fileInput = proofSection.querySelector("#proof-upload");
 
     let activeCard = null;
+
+    submitProofBtn.addEventListener("click", () => {
+        if (!fileInput.files.length) {
+            alert("Please upload a photo of your proof.");
+            return;
+        }
+
+        activeCard.classList.remove("unfinished");
+        activeCard.classList.add("pending");
+        activeCard.dataset.requested = "true";
+
+        if (statusTextElement) {
+            statusTextElement.textContent = "Status: Pending";
+        }
+
+        modal.classList.remove("modal-unfinished");
+        modal.classList.add("modal-pending");
+
+        markFinishedBtn.textContent = "Request Sent";
+        markFinishedBtn.classList.add("disabled-finished-btn");
+        markFinishedBtn.style.pointerEvents = "none";
+        markFinishedBtn.style.display = "block";
+
+        proofSection.classList.add("hidden");
+        fileInput.value = "";
+
+        setTimeout(() => {
+            modal.classList.remove("active");
+            document.body.classList.remove("dimmed");
+            activeCard = null;
+        }, 600);
+    });
+
+    cancelProofBtn.addEventListener("click", () => {
+        proofSection.classList.add("hidden");
+        markFinishedBtn.style.display = "block";
+        fileInput.value = "";
+    });
 
     document.body.addEventListener("click", (e) => {
         if (e.target.classList.contains("expand-btn")) {
@@ -165,15 +207,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 markFinishedBtn.style.pointerEvents = "none";
             } else if (isDue) {
                 modal.classList.add("modal-due");
-
                 if (activeCard.dataset.requested === "true") {
                     activeCard.classList.remove("due");
                     activeCard.classList.add("pending");
                     modal.classList.remove("modal-due");
                     modal.classList.add("modal-pending");
+
                     markFinishedBtn.textContent = "Request Sent";
                     markFinishedBtn.classList.add("disabled-finished-btn");
                     markFinishedBtn.style.pointerEvents = "none";
+
                     statusTextElement.textContent = "Status: Pending";
                 } else {
                     markFinishedBtn.textContent = "Request Alternate Task";
@@ -222,27 +265,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (isUnfinished) {
-            activeCard.classList.remove("unfinished", "due", "pending");
-            activeCard.classList.add("finished");
-
-            if (statusTextElement) {
-                statusTextElement.textContent = "Status: Finished";
-            }
-
-            markFinishedBtn.textContent = "Task Finished";
-            markFinishedBtn.classList.add("disabled-finished-btn");
-            markFinishedBtn.style.pointerEvents = "none";
-
-            modal.classList.remove("modal-due", "modal-unfinished", "modal-pending");
-            modal.classList.add("modal-finished");
-
-            updateProgressBar();
-
-            setTimeout(() => {
-                modal.classList.remove("active");
-                document.body.classList.remove("dimmed");
-                activeCard = null;
-            }, 600);
+            proofSection.classList.remove("hidden");
+            markFinishedBtn.style.display = "none";
         }
     });
 });

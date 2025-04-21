@@ -132,7 +132,7 @@
       <div class="task-grid"></div>
     </section>
 
-    <!---->
+    <!--Task card expanded -->
     <div class="task-modal hidden" id="task-modal">
       <div class="modal-content">
         <h3>Task Details</h3>
@@ -143,6 +143,16 @@
           <button class="mark-finished">Mark as Finished</button>
           <button class="close-modal">Close</button>
         </div>
+        
+        <div class="proof-upload-section hidden">
+          <label for="proof-upload">Upload Proof of Completion:</label>
+          <input type="file" id="proof-upload" accept="image/*" />
+          <div class="proof-actions">
+            <button class="submit-proof">Submit</button>
+            <button class="cancel-proof">Cancel</button>
+          </div>
+        </div>
+        
       </div>
     </div>
 
