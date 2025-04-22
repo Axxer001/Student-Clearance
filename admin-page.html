@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic settings and page info -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Page icon in the browser tab -->
   <link rel="icon" type="image/png" href="WMSU-LOGO-min.ico" />
+
+  <!-- Page title -->
   <title> WMSU Clearance | Admin </title>
+
+  <!-- Link to external CSS and JS files -->
   <link rel="stylesheet" href="style-admin.css" />
   <script src="script-admin.js" defer></script>
 </head>
 <body>
   <div class="page-container">
 
-    <!--NAV-->
+    <!-- TOP NAVIGATION BAR -->
     <nav class="navbar">
       <div class="navbar-left">
+        <!-- Button to open/close sidebar -->
         <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
+
+        <!-- School logo -->
         <img src="wmsu-logo.png" alt="Logo" class="logo" />
+
+        <!-- Page header text -->
         <h1 class="navbar-title">CLEARANCE ASSESSMENT</h1>
       </div>
+
+      <!-- Notification bell icon -->
       <div class="navbar-right">
         <button class="notification-bell">🔔</button>
       </div>
+
+      <!-- Popup for notifications -->
       <div id="notification-popup" class="notification-popup">
         <div class="notification-header">Notifications</div>
         <ul class="notification-list">
@@ -29,17 +45,20 @@
       </div>
     </nav>
 
-    <!--SIDE-->
+    <!-- SIDE MENU -->
     <div class="side-panel" id="side-panel">
       <ul class="side-panel-links">
         <li><a href="#">Dashboard</a></li>
-        <li><a href="index.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li><a href="index.html" id="logout-btn">Logout</a></li>
       </ul>
     </div>
 
-    <!--ADMIN PFP-->
+    <!-- ADMIN PROFILE SECTION -->
     <section class="admin-profile">
+      <!-- Admin profile picture -->
       <img src="5t5o6a.png" alt="Admin Avatar" class="admin-avatar" />
+
+      <!-- Admin details -->
       <div class="admin-info">
         <h2 class="admin-name">ARWEEN A. GARCING</h2>
         <p class="admin-course">Administrator</p>
@@ -47,56 +66,69 @@
       </div>
     </section>
 
-    <!--DASH-->
+    <!-- DASHBOARD CONTENT -->
     <section class="dashboard-container">
       <h2>WMSU Clearance Assessment: Dashboard</h2>
-      <p>The overview of clearance tasks and their status.</p>
+      <p>Here is the summary of clearance tasks and status.</p>
 
       <div class="admin-tabs">
+        <!-- Students who are done -->
         <div class="tabs finished-tab">
-          <div class="tab-title"><strong>Finished Students </strong>(<span class="finished-count">0</span>)</div>
+          <div class="tab-title"><strong>Finished Students</strong> (<span class="finished-count">0</span>)</div>
           <br>
           <ul class="details-list" id="finished-tab">
+            <!-- List will show here -->
           </ul>
         </div>
+
+        <!-- Students who submitted for checking -->
         <div class="tabs check-tab">
           <div class="tab-title"><strong>Check Requests</strong> (<span class="check-count">0</span>)</div>
           <br>
           <ul class="details-list" id="check-tab">
+            <!-- List will show here -->
           </ul>
         </div>
+
+        <!-- Students who were given tasks -->
         <div class="tabs task-tab">
           <div class="tab-title"><strong>Task Requests</strong> (<span class="task-count">0</span>)</div>
           <br>
           <ul class="details-list" id="task-tab">
+            <!-- List will show here -->
           </ul>
         </div>
       </div>
     </section>
 
-    <!--FOOT-->
+    <!-- FOOTER SECTION -->
     <footer class="footer">
       <div class="footer-content">
         <p>© 2025 Western Mindanao State University</p>
         <ul class="footer-links">
-          <li><strong>Official Website: </strong><a href="http://wmsu.edu.ph/" target="_blank">http://wmsu.edu.ph/</a></li>
-          <li><strong>Email: </strong>lms@wmsu.edu.ph</li>
-          <li><strong>Facebook: </strong><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank">https://www.facebook.com/wmsu.edu.ph</a></li>
+          <li><strong>Website:</strong> <a href="http://wmsu.edu.ph/" target="_blank">wmsu.edu.ph</a></li>
+          <li><strong>Email:</strong> lms@wmsu.edu.ph</li>
+          <li><strong>Facebook:</strong> <a href="https://www.facebook.com/wmsu.edu.ph" target="_blank">facebook.com/wmsu.edu.ph</a></li>
         </ul>
       </div>
     </footer>
   </div>
 
-<!--MODAL FOR CHECK REQ-->
-<div id="check-modal" class="modal-overlay" style="display: none;">
-  <div class="modal-content">
-    <h3 id="modal-student-name">Student Name</h3>
-    <img src="https://via.placeholder.com/300x200" alt="Submitted Media" id="submitted-media" />
-    <div class="modal-actions">
-      <button id="confirm-check-btn" class="approve-btn">Confirm</button>
-      <button id="cancel-check-btn" class="delete-btn">Cancel</button>
+  <!-- POPUP MODAL FOR CHECK REQUEST -->
+  <div id="check-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <!-- Student's name will be placed here -->
+      <h3 id="modal-student-name">Student Name</h3>
+
+      <!-- Submitted image or file -->
+      <img src="https://via.placeholder.com/300x200" alt="Submitted Media" id="submitted-media" />
+
+      <!-- Buttons to confirm or cancel -->
+      <div class="modal-actions">
+        <button id="confirm-check-btn" class="approve-btn">Confirm</button>
+        <button id="cancel-check-btn" class="delete-btn">Cancel</button>
+      </div>
     </div>
   </div>
-</div>
 </body>
 </html>
