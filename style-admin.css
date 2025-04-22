@@ -302,7 +302,7 @@
   }
   
   .task-tab::before {
-    background-color: red;
+    background-color: grey;
   }
   
   .tabs::after {
@@ -329,6 +329,13 @@
   .tabs.expanded .details-list {
     max-height: 500px;
   }
+
+  .tab-counter {
+    color: #555;
+    font-weight: normal;
+    font-size: 0.9rem;
+  }
+  
   
   /* Student Entries */
   .student-entry {

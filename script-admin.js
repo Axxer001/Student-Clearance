@@ -36,6 +36,17 @@ if (bellIcon && popup) {
   });
 }
 
+// TAB NAME COUNTERS
+function updateTabCounters() {
+  const finishedCount = document.querySelectorAll("#finished-tab .student-entry").length;
+  const checkCount = document.querySelectorAll("#check-tab .student-entry").length;
+  const taskCount = document.querySelectorAll("#task-tab .student-entry").length;
+
+  document.querySelector(".finished-count").textContent = finishedCount;
+  document.querySelector(".check-count").textContent = checkCount;
+  document.querySelector(".task-count").textContent = taskCount;
+}
+
 //LOGOUT
 document.getElementById("logout-btn").addEventListener("click", function (e) {
   e.preventDefault();
@@ -75,6 +86,9 @@ function renderStudentList(tabClass, namesArray, showApprove = false) {
     `;
     tab.appendChild(li);
   });
+
+  // ✅ Update counters after rendering each list
+  updateTabCounters();
 }
 
 //RENDER PER TAB
@@ -84,36 +98,57 @@ renderStudentList('task-tab', tabData.task, true);
 
 //NAME BUTTON ACTIONS 
 document.addEventListener('click', (e) => {
-    const entry = e.target.closest('.student-entry');
-    if (!entry) return;
+  const entry = e.target.closest('.student-entry');
+  if (!entry) return;
+
+  const parentTab = entry.closest('.tabs');
+  const name = entry.querySelector('.student-name').textContent;
+
+  // DELETE BUTTON
+  if (e.target.classList.contains('delete-btn')) {
+    if (parentTab.classList.contains('finished-tab')) {
+      // Remove from tabData.finished
+      tabData.finished = tabData.finished.filter(n => n !== name);
+    } else if (parentTab.classList.contains('check-tab')) {
+      // Remove from tabData.check
+      tabData.check = tabData.check.filter(n => n !== name);
+    } else if (parentTab.classList.contains('task-tab')) {
+      // Remove from tabData.task
+      tabData.task = tabData.task.filter(n => n !== name);
+    }
   
-    const parentTab = entry.closest('.tabs');
-    const name = entry.querySelector('.student-name').textContent;
+    entry.remove();
+    updateTabCounters();
+    return;
+  }
   
-    if (e.target.classList.contains('delete-btn')) {
+
+  // APPROVE BUTTON
+  if (e.target.classList.contains('approve-btn')) {
+    if (parentTab && parentTab.classList.contains('check-tab')) {
+      document.getElementById('modal-student-name').textContent = name;
+      document.getElementById('check-modal').style.display = 'flex';
+
+      document.getElementById('confirm-check-btn').onclick = () => {
+        tabData.finished.push(name);
+        renderStudentList('finished-tab', tabData.finished); // rerender Finished
+        entry.remove(); // remove from Check tab
+        document.getElementById('check-modal').style.display = 'none';
+        updateTabCounters(); //  Update both tabs
+      };
+
+      document.getElementById('cancel-check-btn').onclick = () => {
+        document.getElementById('check-modal').style.display = 'none';
+      };
+
+    } else if (parentTab && parentTab.classList.contains('task-tab')) {
       entry.remove();
-      return;
+      updateTabCounters(); // Remove from Task
     }
-  
-    if (e.target.classList.contains('approve-btn')) {
-      if (parentTab && parentTab.classList.contains('check-tab')) {
-        document.getElementById('modal-student-name').textContent = name;
-        document.getElementById('check-modal').style.display = 'flex';
-  
-        document.getElementById('confirm-check-btn').onclick = () => {
-          tabData.finished.push(name);
-          renderStudentList('finished-tab', tabData.finished);
-          entry.remove();
-          document.getElementById('check-modal').style.display = 'none';
-        };
-  
-        document.getElementById('cancel-check-btn').onclick = () => {
-          document.getElementById('check-modal').style.display = 'none';
-        };
-  
-      } else if (parentTab && parentTab.classList.contains('task-tab')) {
-        entry.remove();
-      }
-    }
-  });
-  
+  }
+});
+
+// Call once on load to initialize counters
+document.addEventListener('DOMContentLoaded', () => {
+  updateTabCounters();
+});
