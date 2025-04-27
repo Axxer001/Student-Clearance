@@ -23,7 +23,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.8; /* Slight transparency when hovered */
+  opacity: 0.8;
 }
 
 /* Container for whole page layout */
@@ -40,7 +40,7 @@ a:hover {
   align-items: center;
   padding: 1rem 2rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* light shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-left {
@@ -93,7 +93,7 @@ a:hover {
   width: 250px;
   height: 100%;
   background-color: rgb(177, 4, 0);
-  transform: translateX(-100%); /* hide by default */
+  transform: translateX(-100%);
   transition: transform 0.3s ease;
   z-index: 100;
   color: #fff;
@@ -101,7 +101,7 @@ a:hover {
 }
 
 .side-panel.active {
-  transform: translateX(0); /* slide in */
+  transform: translateX(0);
 }
 
 .side-panel-links {
@@ -217,18 +217,18 @@ a:hover {
 
 /* === Admin Tabs for Student Status === */
 .admin-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   margin-top: 2rem;
 }
 
 .tabs {
+  width: 100%;
   background: #fff;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-block-size: 120px;
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -236,13 +236,13 @@ a:hover {
 }
 
 .tabs.expanded {
-  max-block-size: 600px; /* expand when clicked */
+  max-block-size: 600px;
 }
 
 /* Colored bar at the bottom */
-.finished-tab::before { background-color: green; }
-.check-tab::before { background-color: gold; }
-.task-tab::before { background-color: grey; }
+.finished-tab::before {
+  background-color: green;
+}
 
 .tabs::before {
   content: "";
@@ -264,7 +264,7 @@ a:hover {
 }
 
 .tabs.expanded::after {
-  transform: rotate(180deg); /* arrow flips */
+  transform: rotate(180deg);
 }
 
 /* Student list inside tab */
@@ -277,7 +277,22 @@ a:hover {
 }
 
 .tabs.expanded .details-list {
-  max-height: 500px;
+  max-height: 500px; /* You can also use 60vh */
+  overflow-y: auto;
+}
+
+/* Custom Scrollbar */
+.details-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.details-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.details-list::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
 }
 
 /* === Student Entries === */
@@ -312,11 +327,19 @@ a:hover {
   transition: background-color 0.2s ease;
 }
 
-.approve-btn { background-color: #2ecc71; }
-.approve-btn:hover { background-color: #27ae60; }
+.approve-btn {
+  background-color: #2ecc71;
+}
+.approve-btn:hover {
+  background-color: #27ae60;
+}
 
-.delete-btn { background-color: #e74c3c; }
-.delete-btn:hover { background-color: #c0392b; }
+.delete-btn {
+  background-color: #e74c3c;
+}
+.delete-btn:hover {
+  background-color: #c0392b;
+}
 
 /* === Footer Section === */
 .footer {
