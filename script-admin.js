@@ -106,16 +106,3 @@ modalOverlay.addEventListener('click', (e) => {
     modalOverlay.style.display = 'none';
   }
 });
-
-// ---------------------------
-// Function to display student details inside modal (optional)
-// ---------------------------
-function displayStudentDetails(student) {
-  if (modalContent) {
-    modalContent.innerHTML = `
-      <h2>${student.name}</h2>
-      <img src="${student.image}" alt="Student Image">
-      <p>${student.details}</p>
-    `;
-  }
-}
