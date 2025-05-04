@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="style-landing.css" />
+  <script src="script-landing.js" defer></script>
+
+  <!-- Styles for footer placement and student profile -->
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .page-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .dashboard-container {
+      flex: 1;
+    }
+
+    .footer {
+      margin-top: auto;
+    }
+
+    .student-profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .student-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .student-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .student-name {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .student-course,
+    .student-email {
+      margin: 0;
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button class="sidebar-toggle" id="sidebar-toggle">&#9776;</button>
+        <img src="wmsu-logo.png" alt="Logo" class="logo" />
+        <h1 class="navbar-title">CLEARANCE ASSESSMENT</h1>
+      </div>
+
+      <div class="navbar-right">
+        <button class="notification-bell">🔔</button>
+      </div>
+    
+      <!-- Notification popup -->
+      <div id="notification-popup" class="notification-popup">
+        <div class="notification-header">Notifications</div>
+        <ul class="notification-list">
+          <li>No new notifications</li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Sidebar panel -->
+    <div class="side-panel" id="side-panel">
+      <ul class="side-panel-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="index.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Student profile section -->
+    <section class="student-profile">
+      <img src="5t5o6a.png" alt="Student Avatar" class="student-avatar" />
+      <div class="student-info">
+        <h2 class="student-name">ARWEEN A. GARCING</h2>
+        <p class="student-course">BS Computer Science</p>
+        <p class="student-email">ihaveterminalcancer001@gmail.com</p>
+      </div>
+    </section>
+
+    <!-- Clearance progress section -->
+    <div class="progress-container">
+      <div class="progress-section">
+        <h3>Clearance Progress</h3>
+
+        <!-- Progress bar -->
+        <div class="progress-bar-background">
+          <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+        </div>
+
+        <!-- Progress text and status -->
+        <div id="progress-text">0% completed</div>
+        <div id="advising-status" class="status-disabled">Unable to proceed for Advising</div>
+      </div>
+    </div>
+
+    <!-- Dashboard task section -->
+    <section class="dashboard-container">
+      <h2>WMSU Clearance Assessment: Dashboard</h2>
+      <p>The overview of your clearance tasks and their status.</p>
+
+      <!-- Dynamic task cards will appear here -->
+      <div class="task-grid"></div>
+    </section>
+
+    <!-- Task detail modal -->
+    <div class="task-modal hidden" id="task-modal">
+      <div class="modal-content">
+        <h3>Task Details</h3>
+        <p>Signature of: LANDREI RAFANAN ZERNA</p>
+        <p>From: PhiCSS</p>
+        <p>Status: Finished</p>
+        <p>Due: April 25, 2025</p>
+
+        <div class="modal-buttons">
+          <button class="mark-finished">Mark as Finished</button>
+          <button class="close-modal">Close</button>
+        </div>
+        
+        <!-- Upload proof of task completion -->
+        <div class="proof-upload-section hidden">
+          <label for="proof-upload">Upload Proof of Completion:</label>
+          <input type="file" id="proof-upload" accept="image/*" />
+          <div class="proof-actions">
+            <button class="submit-proof">Submit</button>
+            <button class="cancel-proof">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>© 2025 Western Mindanao State University</p>
+        <ul class="footer-links">
+          <li><strong>Official Website: </strong><a href="http://wmsu.edu.ph/" target="_blank">http://wmsu.edu.ph/</a></li>
+          <li><strong>Email: </strong>lms@wmsu.edu.ph</li>
+          <li><strong>Facebook: </strong><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank">https://www.facebook.com/wmsu.edu.ph</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

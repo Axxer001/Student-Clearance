@@ -1,0 +1,141 @@
+/* =======================
+   ADMIN PROFILE
+   ======================= */
+   .admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 40px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    margin-top: 20px;
+  }
+  
+  .admin-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .admin-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #bc1511;
+  }
+  
+  .admin-course,
+  .admin-email {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* =======================
+     STATS GRID & CARDS
+     ======================= */
+  .card {
+    border-radius: 8px;
+  }
+  
+  .card-finished {
+    border: 2px solid rgb(40, 167, 69);
+  }
+  
+  .card-finished .card-title,
+  .card-finished .card-text {
+    color: rgb(40, 167, 69);
+  }
+  
+  .card-unfinished {
+    border: 2px solid rgb(177, 4, 0);
+  }
+  
+  .card-unfinished .card-title,
+  .card-unfinished .card-text {
+    color: rgb(177, 4, 0);
+  }
+  
+  .card-tasks {
+    border: 2px solid grey;
+  }
+  
+  .card-tasks .card-title,
+  .card-tasks .card-text {
+    color: grey;
+  }
+  
+  .card-total {
+    border: 2px solid black;
+  }
+  
+  .card-total .card-title,
+  .card-total .card-text {
+    color: black;
+  }
+  
+  /* =======================
+     PIE CHART CARD
+     ======================= */
+  .card-pie {
+    height: 400px;
+    width: 100%;
+  }
+  
+  .card-pie .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .card-pie canvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+  }
+  
+  /* =======================
+     RESPONSIVE
+     ======================= */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-left,
+    .navbar-right {
+      margin-bottom: 0.5rem;
+    }
+  
+    .navbar-title {
+      font-size: 16px;
+    }
+  
+    .notification-bell {
+      margin-right: 10px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .admin-profile {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
+  
+    .admin-avatar {
+      margin-bottom: 10px;
+    }
+  
+    .admin-info {
+      align-items: flex-start;
+    }
+  }
+  

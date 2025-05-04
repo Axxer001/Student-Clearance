@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style-admin.css">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../assets/js/bootstrap.bundle.min.js" defer></script>
+  <script src="script-admin.js" defer></script>
+  <script src="../shared/shared.js" defer></script>
+</head>
+<body>
+  <div class="page-container">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button id="sidebar-toggle" class="sidebar-toggle">&#9776;</button>
+        <img src="../wmsu-logo.png" alt="Logo" class="logo">
+        <h1 class="navbar-title">CLEARANCE ASSESSMENT</h1>
+      </div>
+      <div class="navbar-right position-relative">
+        <button id="notification-bell" class="notification-bell">🔔</button>
+        <div id="notification-popup" class="notification-popup d-none">
+          <div class="notification-header">Notifications</div>
+          <ul class="notification-list">
+            <li>No new notifications</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SIDE PANEL -->
+    <div id="side-panel" class="side-panel">
+      <ul class="side-panel-links">
+        <li><a href="../admin-page.html">Dashboard</a></li>
+        <li><a href="../clearance-list/clearance.html">Clearance List</a></li>
+        <li><a href="#">Finished Students</a></li>
+        <li><a href="#">Unfinished Students</a></li>
+        <li><a href="#">Task Requests</a></li>
+        <li><a href="#">Clearance History</a></li>
+        <li><a href="index.html" id="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- ADMIN PROFILE -->
+    <section class="admin-profile">
+      <img src="../5t5o6a.png" alt="Admin Avatar" class="admin-avatar">
+      <div class="admin-info">
+        <h2 class="admin-name">ARWEEN A. GARCING</h2>
+        <p class="admin-course">Administrator</p>
+        <p class="admin-email">wmsuadmin001@wmsu.edu.ph</p>
+      </div>
+    </section>
+
+    <!-- STATS GRID -->
+    <section class="container mt-4">
+      <div class="row text-center">
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card card-finished shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Finished Students</h5>
+              <p id="finished-students" class="card-text display-6 fw-bold">120</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card card-unfinished shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Unfinished Students</h5>
+              <p id="unfinished-students" class="card-text display-6 fw-bold">30</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card card-tasks shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Task Requests</h5>
+              <p id="task-requests" class="card-text display-6 fw-bold">15</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card card-total shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Total Students</h5>
+              <p id="total-students" class="card-text display-6 fw-bold">150</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCHOOL YEAR & SEMESTER -->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box-container p-3 border rounded" style="height: 400px;">
+            <h5>School Year Selector</h5>
+            <div id="school-year-list" class="list-group overflow-auto" style="max-height: 300px;">
+              <a href="#" data-year="2021-2022" class="list-group-item list-group-item-action active">2021-2022 (current)</a>
+              <a href="#" data-year="2020-2021" class="list-group-item list-group-item-action">2020-2021</a>
+              <a href="#" data-year="2019-2020" class="list-group-item list-group-item-action">2019-2020</a>
+              <a href="#" data-year="2018-2019" class="list-group-item list-group-item-action">2018-2019</a>
+              <a href="#" data-year="2017-2018" class="list-group-item list-group-item-action">2017-2018</a>
+              <a href="#" data-year="2016-2017" class="list-group-item list-group-item-action">2016-2017</a>
+              <a href="#" data-year="2015-2016" class="list-group-item list-group-item-action">2015-2016</a>
+            </div>
+            <div class="mt-3 d-flex justify-content-between">
+              <button id="semester-toggle-1st" class="btn btn-secondary">1st Semester</button>
+              <button id="semester-toggle-2nd" class="btn btn-secondary">2nd Semester</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card card-pie">
+            <div class="card-body p-0 d-flex align-items-center justify-content-center">
+              <canvas id="pie-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer mt-4">
+      <div class="footer-content">
+        <p>© 2025 Western Mindanao State University</p>
+        <ul class="footer-links">
+          <li><strong>Official Website: </strong><a href="http://wmsu.edu.ph/" target="_blank">wmsu.edu.ph</a></li>
+          <li><strong>Email: </strong>lms@wmsu.edu.ph</li>
+          <li><strong>Facebook: </strong><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank">facebook.com/wmsu.edu.ph</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('notification-bell').addEventListener('click', function () {
+      const popup = document.getElementById('notification-popup');
+      popup.classList.toggle('d-none');
+    });
+  </script>
+</body>
+</html>
