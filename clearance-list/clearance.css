@@ -8,14 +8,16 @@
     background-color: #f8f9fa;
     border-bottom: 1px solid #ddd;
     box-sizing: border-box; /* Ensures padding is included in width */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
 }
 
 .search-bar-container input {
     flex: 1; /* Takes up remaining space */
-    margin-right: 10px;
+    margin: 5px 10px 5px 0; /* Adjusted for smaller screens */
     padding: 10px 15px;
     border: 1px solid #bc1511;
     border-radius: 4px;
+    min-width: 200px; /* Ensure minimum width for usability */
 }
 
 .search-bar-container button {
@@ -23,6 +25,7 @@
     border-radius: 4px;
     border: none;
     cursor: pointer;
+    margin: 5px 0; /* Add space on smaller screens */
 }
 
 /* Match Table Width with Search Bar */
@@ -30,6 +33,7 @@
     width: 100%;
     margin: 0 auto;
     padding: 0 20px;
+    overflow-x: auto; /* Allow horizontal scrolling for smaller screens */
 }
 
 /* Alternate Row Colors (Optional for Clarity) */
@@ -52,4 +56,36 @@
     border-color: #ddd; /* Keep borders subtle */
 }
 
+/* Responsive Design */
+/* Adjust Search Bar and Table for Smaller Screens */
+@media (max-width: 768px) {
+    .search-bar-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Full-width alignment */
+    }
 
+    .search-bar-container input,
+    .search-bar-container button {
+        width: 100%; /* Full width for inputs and buttons */
+        margin: 5px 0; /* Spacing between stacked elements */
+    }
+
+    .table-responsive {
+        padding: 0 10px; /* Reduce padding for smaller screens */
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f2b7b9; /* Slightly lighter hover effect for clarity */
+    }
+}
+
+/* Ensure Table Fits Smaller Screens */
+@media (max-width: 576px) {
+    .table-responsive {
+        font-size: 0.9rem; /* Reduce font size for smaller screens */
+    }
+
+    .table thead th {
+        font-size: 0.8rem; /* Slightly smaller headers */
+    }
+}

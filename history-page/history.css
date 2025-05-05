@@ -1,0 +1,103 @@
+/* Filter container */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px; /* Ensures space between filter and tables */
+}
+
+/* Search bar styling */
+.filter-container .search-bar {
+    flex-grow: 1; /* Take up remaining space */
+}
+
+.filter-container .search-bar input {
+    width: 100%;
+    height: 40px; /* Consistent height */
+    padding: 5px 10px;
+    border: 1px solid #bc1511;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+/* Dropdown buttons */
+.filter-container .dropdown button {
+    height: 40px; /* Same height as the search bar */
+    background-color: white;
+    color: #bc1511;
+    border: 1px solid #bc1511;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures consistent alignment */
+}
+
+.filter-container .dropdown button:hover {
+    background-color: #f8d7da;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: stretch; /* Full-width elements */
+        gap: 10px;
+    }
+
+    .filter-container .search-bar,
+    .filter-container .dropdown {
+        width: 100%; /* Full-width on smaller screens */
+    }
+}
+
+/* Table section ensures no overlap with the filter container */
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 0; /* Avoids pushing down the filter container */
+}
+
+.table-wrapper {
+    flex: 1;
+    background-color: #bc1511;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Prevents layout shifts */
+}
+
+.table-title {
+    margin-bottom: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Tables are responsive */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #bc1511;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Responsive table behavior */
+@media (max-width: 768px) {
+    .tables-container {
+        flex-direction: column; /* Stack tables vertically */
+        gap: 15px;
+    }
+}

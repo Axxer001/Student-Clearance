@@ -37,27 +37,29 @@
         <div id="side-panel" class="side-panel">
             <ul class="side-panel-links">
                 <li><a href="../admin-page/admin-page.html">Dashboard</a></li>
-                <li><a href="#">Clearance List</a></li>
+                <li><a href="../clearance-list/clearance.html">Clearance List</a></li>
                 <li><a href="#">Finished Students</a></li>
                 <li><a href="#">Unfinished Students</a></li>
                 <li><a href="#">Task Requests</a></li>
-                <li><a href="#">Clearance History</a></li>
+                <li><a href="../history-page/history.html">Clearance History</a></li>
                 <li><a href="../index.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
 
-        <!-- SEARCH BAR, FILTER, AND SELECT ALL -->
+<!-- SEARCH BAR, FILTER, AND SELECT ALL -->
 <div class="d-flex justify-content-between align-items-center px-4 py-3">
     <input 
         type="text" 
         id="search-input" 
-        class="form-control form-control-lg w-75" 
+        class="form-control form-control-lg w-75"
+        style="border: 1px solid #bc1511; border-radius: 4px; height: 40px; padding: 5px 10px;" 
         placeholder="Search by Name or Course"
     >
     <div class="d-flex gap-2">
         <div class="dropdown">
             <button 
-                class="btn btn-secondary dropdown-toggle" 
+                class="btn" 
+                style="background-color: white; color: #bc1511; border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px;" 
                 type="button" 
                 id="yearFilterDropdown" 
                 data-bs-toggle="dropdown" 
@@ -72,9 +74,15 @@
                 <li><a class="dropdown-item year-filter" href="#" data-year="4th Year">4th Year</a></li>
             </ul>
         </div>
-        <button id="add-button" class="btn btn-primary">Add</button>
+        <button 
+            id="add-button" 
+            class="btn" 
+            style="background-color: #bc1511; color: white; border-radius: 4px; padding: 5px 15px; border: 1px solid #bc1511;">
+            Add
+        </button>
     </div>
 </div>
+
 
 
         <!-- STUDENTS TABLE -->
