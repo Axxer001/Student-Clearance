@@ -18,7 +18,6 @@
     });
   })();
   
-  
   // NOTIFICATION POPUP
   (function() {
     const bellIcon = document.querySelector('.notification-bell');
@@ -59,4 +58,5 @@
       window.location.href = 'index.html'; // Redirect to the homepage
     });
   })();
+
   

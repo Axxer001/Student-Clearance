@@ -550,6 +550,31 @@ button.close-modal   { background-color: #ccc;  color: #333;  }
     gap: 1rem;
 }
 
+/* Specific styles for Finished and Unfinished modals */
+.task-modal.modal-finished .modal-buttons button:not(.close-modal),
+.task-modal.modal-unfinished .modal-buttons button:not(.close-modal) {
+    display: none; /* Hide all buttons except for the Close button */
+}
+
+.task-modal.modal-finished .modal-buttons .close-modal,
+.task-modal.modal-unfinished .modal-buttons .close-modal {
+    width: 100%; /* Make the Close button span full width */
+    text-align: center;
+    /*background-color: #d91e18; Optional: distinct color */
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.task-modal.modal-finished .modal-buttons .close-modal:hover,
+.task-modal.modal-unfinished .modal-buttons .close-modal:hover {
+    opacity: 0.9;
+}
+
+
 
 /* ----------------------------------
    Footer

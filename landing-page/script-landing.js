@@ -90,12 +90,12 @@ function updateProgressBar() {
 const taskGrid = document.querySelector(".task-grid");
 
 const tasks = [
-    { name: "JUAN LUNA", role: "PhiCSS", due: "April 25, 2025", status: "finished" },
-    { name: "HENERAL GOYO", role: "CSC", due: "April 30, 2025", status: "finished" },
-    { name: "MARIA CLARA LORENZO LOBREGAT", role: "Divisoria Representative", due: "May 1, 2025", status: "finished" },
-    { name: "JOSE RIZAL", role: "Cashier", due: "April 22, 2025", status: "finished" },
-    { name: "NAPOLEON BONAPARTE", role: "Library", due: "April 30, 2025", status: "finished" },
-    { name: "JULIUS CAESA", role: "Library", due: "April 30, 2025", status: "finished" }
+    { name: "JUAN LUNA", role: "PhiCSS", due: "April 25, 2025", status: "finished", alternate: "n/a", extend: "n/a" },
+    { name: "HENERAL GOYO", role: "CSC", due: "(already past due)", status: "finished", alternate: "Clean CSS Bathrooms.", extend: "May 10, 2025" },
+    { name: "MARIA CLARA LORENZO LOBREGAT", role: "Divisoria Representative", due: "May 1, 2025", status: "unfinished", alternate: "n/a", extend: "n/a" },
+    { name: "JOSE RIZAL", role: "Cashier", due: "(already past due)", status: "unfinished", alternate: "Buy atleast 5 cleaning materials.", extend: "April 30, 2025" },
+    { name: "NAPOLEON BONAPARTE", role: "Library", due: "April 30, 2025", status: "due", alternate: "n/a", extend: "n/a" },
+    { name: "JULIUS CAESA", role: "Library", due: "April 30, 2025", status: "due", alternate: "n/a", extend: "n/a" }
 ];
 
 // Create task cards and append to grid
@@ -107,6 +107,8 @@ tasks.forEach(task => {
     card.setAttribute("data-name", task.name);
     card.setAttribute("data-role", task.role);
     card.setAttribute("data-due", task.due);
+    card.setAttribute("data-alternate", task.alternate);
+    card.setAttribute("data-extend", task.extend);
 
     card.innerHTML = `
         <div class="task-header">
@@ -188,11 +190,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const name = activeCard.getAttribute("data-name") || "Unknown";
             const role = activeCard.getAttribute("data-role") || "Unknown";
             const due = activeCard.getAttribute("data-due") || "Unknown";
+            const alternate = activeCard.getAttribute("data-alternate") || "Unknown";
+            const extend = activeCard.getAttribute("data-extend") || "Unknown";
+            
 
             // Fill modal content
             modal.querySelector("p:nth-child(2)").textContent = `Signature of: ${name}`;
             modal.querySelector("p:nth-child(3)").textContent = `From: ${role}`;
-            modal.querySelector("p:nth-child(4)").textContent = `Due: ${due}`;
+            modal.querySelector("p:nth-child(5)").textContent = `Due: ${due}`;
+            modal.querySelector("p:nth-child(6)").textContent = `Alternate Task: ${alternate}`;
+            modal.querySelector("p:nth-child(7)").textContent = `Extended Until: ${extend}`;
+
 
             modal.classList.add("active");
             document.body.classList.add("dimmed");
@@ -298,3 +306,237 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.querySelectorAll('.task-card').forEach(card => {
+    card.addEventListener('click', function () {
+        const modal = document.querySelector('.task-modal');
+        
+        // Check the card's class to determine status
+        if (card.classList.contains('finished')) {
+            modal.classList.add('modal-finished');
+            modal.classList.remove('modal-unfinished');
+        } else if (card.classList.contains('unfinished')) {
+            modal.classList.add('modal-unfinished');
+            modal.classList.remove('modal-finished');
+        } else {
+            modal.classList.remove('modal-finished', 'modal-unfinished');
+        }
+
+        // Show the modal
+        modal.classList.add('active');
+        document.body.classList.add('dimmed');
+    });
+});
+
+// Close button handler
+document.querySelector('.close-modal').addEventListener('click', function () {
+    const modal = document.querySelector('.task-modal');
+    modal.classList.remove('active', 'modal-finished', 'modal-unfinished');
+    document.body.classList.remove('dimmed');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Sample data with semester and schoolYear
+    const clearanceHistoryData = [
+      {
+        section: 'Computer Science 101',
+        facilitator: 'Prof. Juan Dela Cruz',
+        status: 'Finished',
+        due: 'April 25, 2025',
+        semester: '2nd',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Math 201',
+        facilitator: 'Dr. Maria Santos',
+        status: 'Pending',
+        due: 'May 5, 2025',
+        semester: '2nd',
+        schoolYear: '2024-2025'
+      },
+      {
+        section: 'English 102',
+        facilitator: 'Ms. Ana Garcia',
+        status: 'In Progress',
+        due: 'May 10, 2025',
+        semester: '1st',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Physics 103',
+        facilitator: 'Prof. Ramon Lopez',
+        status: 'Finished',
+        due: 'April 30, 2025',
+        semester: '2nd',
+        schoolYear: '2025-2026'
+      },
+      {
+        section: 'Computer Science 101',
+        facilitator: 'Prof. Juan Dela Cruz',
+        status: 'Finished',
+        due: 'April 25, 2025',
+        semester: '2nd',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Computer Science 101',
+        facilitator: 'Prof. Juan Dela Cruz',
+        status: 'In Progress',
+        due: 'May 5, 2025',
+        semester: '2nd',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Computer Science 101',
+        facilitator: 'Prof. Juan Dela Cruz',
+        status: 'Pending',
+        due: 'May 10, 2025',
+        semester: '2nd',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Math 201',
+        facilitator: 'Dr. Maria Santos',
+        status: 'Pending',
+        due: 'May 5, 2025',
+        semester: '2nd',
+        schoolYear: '2024-2025'
+      },
+      {
+        section: 'Math 201',
+        facilitator: 'Dr. Maria Santos',
+        status: 'Finished',
+        due: 'April 20, 2025',
+        semester: '2nd',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Math 201',
+        facilitator: 'Dr. Maria Santos',
+        status: 'In Progress',
+        due: 'May 15, 2025',
+        semester: '2nd',
+        schoolYear: '2025-2026'
+      },
+      {
+        section: 'English 102',
+        facilitator: 'Ms. Ana Garcia',
+        status: 'In Progress',
+        due: 'May 10, 2025',
+        semester: '1st',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'English 102',
+        facilitator: 'Ms. Ana Garcia',
+        status: 'Finished',
+        due: 'April 30, 2025',
+        semester: '2nd',
+        schoolYear: '2024-2025'
+      },
+      {
+        section: 'English 102',
+        facilitator: 'Ms. Ana Garcia',
+        status: 'Pending',
+        due: 'May 12, 2025',
+        semester: '2nd',
+        schoolYear: '2025-2026'
+      },
+      {
+        section: 'Physics 103',
+        facilitator: 'Prof. Ramon Lopez',
+        status: 'Finished',
+        due: 'April 30, 2025',
+        semester: '2nd',
+        schoolYear: '2025-2026'
+      },
+      {
+        section: 'Physics 103',
+        facilitator: 'Prof. Ramon Lopez',
+        status: 'In Progress',
+        due: 'May 1, 2025',
+        semester: '1st',
+        schoolYear: '2023-2024'
+      },
+      {
+        section: 'Physics 103',
+        facilitator: 'Prof. Ramon Lopez',
+        status: 'Pending',
+        due: 'May 20, 2025',
+        semester: '2nd',
+        schoolYear: '2024-2025'
+      } ,
+        // 2023-2024 Data
+        { section: 'Computer Science 101', facilitator: 'Prof. Juan Dela Cruz', status: 'Finished', due: 'April 25, 2025', semester: '1st', schoolYear: '2023-2024' },
+        { section: 'Math 201', facilitator: 'Dr. Maria Santos', status: 'In Progress', due: 'May 15, 2025', semester: '1st', schoolYear: '2023-2024' },
+        { section: 'English 102', facilitator: 'Ms. Ana Garcia', status: 'Pending', due: 'May 10, 2025', semester: '1st', schoolYear: '2023-2024' },
+      
+        // 2024-2025 Data
+        { section: 'Computer Science 101', facilitator: 'Prof. Juan Dela Cruz', status: 'Pending', due: 'May 10, 2025', semester: '2nd', schoolYear: '2024-2025' },
+        { section: 'Math 201', facilitator: 'Dr. Maria Santos', status: 'Pending', due: 'May 5, 2025', semester: '2nd', schoolYear: '2024-2025' },
+        { section: 'English 102', facilitator: 'Ms. Ana Garcia', status: 'Finished', due: 'April 30, 2025', semester: '2nd', schoolYear: '2024-2025' },
+        { section: 'Physics 103', facilitator: 'Prof. Ramon Lopez', status: 'Pending', due: 'May 20, 2025', semester: '2nd', schoolYear: '2024-2025' },
+        { section: 'Computer Science 101', facilitator: 'Prof. Juan Dela Cruz', status: 'In Progress', due: 'May 5, 2024', semester: '1st', schoolYear: '2024-2025' },
+        { section: 'Math 201', facilitator: 'Dr. Maria Santos', status: 'Finished', due: 'April 20, 2024', semester: '1st', schoolYear: '2024-2025' },
+      
+        // 2025-2026 Data
+        { section: 'English 102', facilitator: 'Ms. Ana Garcia', status: 'Pending', due: 'May 12, 2025', semester: '2nd', schoolYear: '2025-2026' },
+        { section: 'Math 201', facilitator: 'Dr. Maria Santos', status: 'In Progress', due: 'May 15, 2025', semester: '2nd', schoolYear: '2025-2026' },
+        { section: 'Physics 103', facilitator: 'Prof. Ramon Lopez', status: 'Finished', due: 'April 30, 2025', semester: '2nd', schoolYear: '2025-2026' },
+        { section: 'Computer Science 101', facilitator: 'Prof. Juan Dela Cruz', status: 'In Progress', due: 'May 1, 2024', semester: '1st', schoolYear: '2025-2026' },
+        { section: 'Physics 103', facilitator: 'Prof. Ramon Lopez', status: 'Pending', due: 'May 12, 2024', semester: '1st', schoolYear: '2025-2026' },
+        { section: 'Math 201', facilitator: 'Dr. Maria Santos', status: 'Finished', due: 'April 15, 2024', semester: '1st', schoolYear: '2025-2026' } 
+    ];
+  
+    // Function to populate the table
+    function populateTable(data) {
+      const tableBody = document.getElementById('clearance-history-body');
+      tableBody.innerHTML = '';  // Clear any existing rows
+  
+      // Iterate over the data and add rows to the table
+      data.forEach(item => {
+        const row = document.createElement('tr');
+  
+        const sectionCell = document.createElement('td');
+        sectionCell.textContent = item.section;
+        row.appendChild(sectionCell);
+  
+        const facilitatorCell = document.createElement('td');
+        facilitatorCell.textContent = item.facilitator;
+        row.appendChild(facilitatorCell);
+  
+        const statusCell = document.createElement('td');
+        statusCell.textContent = item.status;
+        row.appendChild(statusCell);
+  
+        const dueCell = document.createElement('td');
+        dueCell.textContent = item.due;
+        row.appendChild(dueCell);
+  
+        // Append the row to the table body
+        tableBody.appendChild(row);
+      });
+    }
+  
+    // Function to filter data based on selected semester and school year
+    function filterData() {
+      const semester = document.getElementById('semester-dropdown').value;
+      const schoolYear = document.getElementById('schoolyear-dropdown').value;
+  
+      // Filter the data based on the selected semester and school year
+      const filteredData = clearanceHistoryData.filter(item => {
+        return item.semester === semester && item.schoolYear === schoolYear;
+      });
+  
+      // Populate the table with the filtered data
+      populateTable(filteredData);
+    }
+  
+    // Attach event listeners to the dropdowns to filter data when the user changes the selection
+    document.getElementById('semester-dropdown').addEventListener('change', filterData);
+    document.getElementById('schoolyear-dropdown').addEventListener('change', filterData);
+  
+    // Initially populate the table with all data
+    populateTable(clearanceHistoryData);
+  });
+  
