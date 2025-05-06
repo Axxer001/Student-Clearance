@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finished Students</title>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="finished.css">
+  <link rel="stylesheet" href="../shared/shared.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../assets/js/bootstrap.bundle.min.js" defer></script>
+  <script src="finished.js" defer></script>
+  <script src="../shared/shared.js" defer></script>
+</head>
+<body>
+  <div class="page-container">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="navbar-left">
+        <button id="sidebar-toggle" class="sidebar-toggle">&#9776;</button>
+        <img src="../wmsu-logo.png" alt="Logo" class="logo">
+        <h1 class="navbar-title">FINISHED STUDENTS</h1>
+      </div>
+      <div class="navbar-right position-relative">
+        <button id="notification-bell" class="notification-bell">🔔</button>
+        <div id="notification-popup" class="notification-popup d-none">
+          <div class="notification-header">Notifications</div>
+          <ul class="notification-list">
+            <li>No new notifications</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- SIDE PANEL -->
+    <div id="side-panel" class="side-panel">
+        <ul class="side-panel-links">
+          <li><a href="../admin-page/admin-page.html"><i class="bi bi-house"></i> Dashboard</a></li>
+          <li><a href="../clearance-list/clearance.html"><i class="bi bi-list"></i> Clearance List</a></li>
+          <li><a href="../finished-page/finished.html"><i class="bi bi-check-circle"></i> Finished Students</a></li>
+          <li><a href="../unfinishhed-page/unfinished.html"><i class="bi bi-x-circle"></i> Unfinished Students</a></li>
+          <li><a href="../request-page/request.html"><i class="bi bi-file-earmark-text"></i> Task Requests</a></li>
+          <li><a href="../history-page/history.html"><i class="bi bi-clock-history"></i> Clearance History</a></li>
+          <li><a href="index.html" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+        </ul>
+    </div>
+
+<!-- Filter Section -->
+<div class="filter-container d-flex align-items-center justify-content-between px-4 py-3">
+    <!-- Search Bar -->
+    <input 
+        type="text"  
+        id="search-bar" 
+        placeholder="Search by name or course..."
+        style="border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px; width: 60%;"
+    >
+
+    <!-- Filter Buttons Container -->
+    <div class="d-flex gap-3">
+        <!-- Semester Filter Dropdown -->
+        <div class="dropdown">
+            <button 
+                class="btn" 
+                type="button" 
+                id="semesterFilter" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false" 
+                style="background-color: white; color: #bc1511; border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px;"
+            >
+                <i class="bi bi-calendar3" style="margin-right: 5px;"></i>Semester
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="semesterFilter">
+                <li><a class="dropdown-item" href="#">All</a></li>
+                <li><a class="dropdown-item" href="#">1st Sem</a></li>
+                <li><a class="dropdown-item" href="#">2nd Sem</a></li>
+            </ul>
+        </div>
+
+        <!-- Filter Year Dropdown -->
+        <div class="dropdown">
+            <button 
+                class="btn" 
+                type="button" 
+                id="yearFilter" 
+                data-bs-toggle="dropdown" 
+                aria-expanded="false" 
+                style="background-color: white; color: #bc1511; border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px;"
+            >
+                <i class="bi bi-person-check" style="margin-right: 5px;"></i>Filter Year
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="yearFilter">
+                <li><a class="dropdown-item" href="#">All Years</a></li>
+                <li><a class="dropdown-item" href="#">1st Year</a></li>
+                <li><a class="dropdown-item" href="#">2nd Year</a></li>
+                <li><a class="dropdown-item" href="#">3rd Year</a></li>
+                <li><a class="dropdown-item" href="#">4th Year</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!-- Finished List Table -->
+<div class="table-wrapper px-4 py-3">
+    <h3 style="color: #bc1511; margin-bottom: 15px; display: flex; align-items: center;">
+        <i class="bi bi-check-circle-fill" style="margin-right: 5px;"></i>
+        Finished List
+    </h3>
+
+    <table class="student-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Dynamic rows will be added here -->
+            <tr>
+                <td colspan="3" class="placeholder">No data available</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+    <!-- FOOTER -->
+    <footer class="footer mt-4">
+        <div class="footer-content">
+          <p>© 2025 Western Mindanao State University</p>
+          <ul class="footer-links">
+            <li><a href="http://wmsu.edu.ph/" target="_blank"><i class="bi bi-globe"></i> wmsu.edu.ph</a></li>
+            <li><i class="bi bi-envelope"></i> lms@wmsu.edu.ph</li>
+            <li><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank"><i class="bi bi-facebook"></i> facebook.com/wmsu.edu.ph</a></li>
+          </ul>
+        </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('notification-bell').addEventListener('click', function () {
+      const popup = document.getElementById('notification-popup');
+      popup.classList.toggle('d-none');
+    });
+  </script>
+</body>
+</html>

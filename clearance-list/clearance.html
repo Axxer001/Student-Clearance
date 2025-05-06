@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../shared/shared.css"/>
     <link rel="stylesheet" href="clearance.css"/>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="../shared/shared.js" defer></script>
     <script src="clearance.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -33,92 +34,95 @@
             </div>
         </nav>
 
-        <!-- SIDE PANEL -->
-        <div id="side-panel" class="side-panel">
-            <ul class="side-panel-links">
-                <li><a href="../admin-page/admin-page.html">Dashboard</a></li>
-                <li><a href="../clearance-list/clearance.html">Clearance List</a></li>
-                <li><a href="#">Finished Students</a></li>
-                <li><a href="#">Unfinished Students</a></li>
-                <li><a href="#">Task Requests</a></li>
-                <li><a href="../history-page/history.html">Clearance History</a></li>
-                <li><a href="../index.html" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-            </ul>
-        </div>
+    <!-- SIDE PANEL -->
+    <div id="side-panel" class="side-panel">
+        <ul class="side-panel-links">
+          <li><a href="../admin-page/admin-page.html"><i class="bi bi-house"></i> Dashboard</a></li>
+          <li><a href="../clearance-list/clearance.html"><i class="bi bi-list"></i> Clearance List</a></li>
+          <li><a href="../finished-page/finished.html"><i class="bi bi-check-circle"></i> Finished Students</a></li>
+          <li><a href="../unfinishhed-page/unfinished.html"><i class="bi bi-x-circle"></i> Unfinished Students</a></li>
+          <li><a href="../request-page/request.html"><i class="bi bi-file-earmark-text"></i> Task Requests</a></li>
+          <li><a href="../history-page/history.html"><i class="bi bi-clock-history"></i> Clearance History</a></li>
+          <li><a href="index.html" id="logout-btn"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+        </ul>
+      </div>
 
-<!-- SEARCH BAR, FILTER, AND SELECT ALL -->
-<div class="d-flex justify-content-between align-items-center px-4 py-3">
-    <input 
-        type="text" 
-        id="search-input" 
-        class="form-control form-control-lg w-75"
-        style="border: 1px solid #bc1511; border-radius: 4px; height: 40px; padding: 5px 10px;" 
-        placeholder="Search by Name or Course"
-    >
-    <div class="d-flex gap-2">
-        <div class="dropdown">
-            <button 
-                class="btn" 
-                style="background-color: white; color: #bc1511; border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px;" 
-                type="button" 
-                id="yearFilterDropdown" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false">
-                Filter Year
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="yearFilterDropdown">
-                <li><a class="dropdown-item year-filter" href="#" data-year="">All Years</a></li>
-                <li><a class="dropdown-item year-filter" href="#" data-year="1st Year">1st Year</a></li>
-                <li><a class="dropdown-item year-filter" href="#" data-year="2nd Year">2nd Year</a></li>
-                <li><a class="dropdown-item year-filter" href="#" data-year="3rd Year">3rd Year</a></li>
-                <li><a class="dropdown-item year-filter" href="#" data-year="4th Year">4th Year</a></li>
-            </ul>
-        </div>
-        <button 
-            id="add-button" 
-            class="btn" 
-            style="background-color: #bc1511; color: white; border-radius: 4px; padding: 5px 15px; border: 1px solid #bc1511;">
-            Add
-        </button>
-    </div>
-</div>
-
-
-
-        <!-- STUDENTS TABLE -->
-        <div class="table-responsive px-4">
-            <table id="data-table" class="table table-hover table-bordered text-center">
-                <thead>
-                    <tr style="background-color: #bc1511; color: #fff;">
-                        <th scope="col">Name</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">
-                            <input type="checkbox" id="select-all-checkbox" title="Select/Deselect All">
-                        </th>
-                    </tr>
-                </thead>
-                
-                
-                <tbody id="table-body">
-                    <!-- Table rows will be dynamically populated -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- FOOTER -->
-        <br><br>
-        <footer class="footer">
-            <div class="footer-content">
-                <p>© 2025 Western Mindanao State University</p>
-                <ul class="footer-links">
-                    <li><strong>Official Website: </strong><a href="http://wmsu.edu.ph/" target="_blank">wmsu.edu.ph</a></li>
-                    <li><strong>Email: </strong>lms@wmsu.edu.ph</li>
-                    <li><strong>Facebook: </strong><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank">facebook.com/wmsu.edu.ph</a></li>
+    <!-- SEARCH BAR, FILTER, AND SELECT ALL -->
+    <div class="d-flex justify-content-between align-items-center px-4 py-3">
+        <input 
+            type="text" 
+            id="search-input" 
+            class="form-control form-control-lg w-75"
+            style="border: 1px solid #bc1511; border-radius: 4px; height: 40px; padding: 5px 10px;" 
+            placeholder="Search by Name or Course"
+        >
+        <div class="d-flex gap-2">
+            <div class="dropdown">
+                <button 
+                    class="btn" 
+                    style="background-color: white; color: #bc1511; border: 1px solid #bc1511; border-radius: 4px; padding: 5px 10px;" 
+                    type="button" 
+                    id="yearFilterDropdown" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
+                    <i class="bi bi-calendar"></i> Filter Year
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="yearFilterDropdown">
+                    <li><a class="dropdown-item year-filter" href="#" data-year="">All Years</a></li>
+                    <li><a class="dropdown-item year-filter" href="#" data-year="1st Year">1st Year</a></li>
+                    <li><a class="dropdown-item year-filter" href="#" data-year="2nd Year">2nd Year</a></li>
+                    <li><a class="dropdown-item year-filter" href="#" data-year="3rd Year">3rd Year</a></li>
+                    <li><a class="dropdown-item year-filter" href="#" data-year="4th Year">4th Year</a></li>
                 </ul>
             </div>
-        </footer>
+            <button 
+                id="add-button" 
+                class="btn" 
+                style="background-color: #bc1511; color: white; border-radius: 4px; padding: 5px 15px; border: 1px solid #bc1511;">
+                <i class="bi bi-plus-circle"></i> Add
+            </button>
+        </div>
     </div>
+
+    <!-- STUDENTS TABLE -->
+    <div class="table-responsive px-4">
+        <table id="data-table" class="table table-hover table-bordered text-center">
+            <thead>
+                <tr style="background-color: #bc1511; color: #fff;">
+                    <th scope="col">Name</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">
+                        <input type="checkbox" id="select-all-checkbox" title="Select/Deselect All">
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Table rows will be dynamically populated -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <br><br>
+    <footer class="footer mt-4">
+        <div class="footer-content">
+          <p>© 2025 Western Mindanao State University</p>
+          <ul class="footer-links">
+            <li><a href="http://wmsu.edu.ph/" target="_blank"><i class="bi bi-globe"></i> wmsu.edu.ph</a></li>
+            <li><i class="bi bi-envelope"></i> lms@wmsu.edu.ph</li>
+            <li><a href="https://www.facebook.com/wmsu.edu.ph" target="_blank"><i class="bi bi-facebook"></i> facebook.com/wmsu.edu.ph</a></li>
+          </ul>
+        </div>
+      </footer>
+</div>
+
 </body>
 <script src="selection.js"></script>
+<script>
+    document.getElementById('notification-bell').addEventListener('click', function () {
+      const popup = document.getElementById('notification-popup');
+      popup.classList.toggle('d-none');
+    });
+  </script>
 </html>
