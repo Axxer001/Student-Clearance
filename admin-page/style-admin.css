@@ -5,15 +5,15 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 30px 40px 20px;
+    padding: 10px 40px 20px;
     background: #fff;
     border-bottom: 1px solid #e0e0e0;
     margin-top: 20px;
   }
   
   .admin-avatar {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -24,6 +24,7 @@
   }
   
   .admin-name {
+    margin-top: 30px;;
     font-size: 22px;
     font-weight: bold;
     color: #bc1511;
@@ -34,7 +35,7 @@
     font-size: 14px;
     color: #555;
   }
-  
+    
   /* =======================
      STATS GRID & CARDS
      ======================= */
