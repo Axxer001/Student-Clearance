@@ -46,17 +46,3 @@
     });
   })();
   
-  
-  // FOOTER LOGOUT BUTTON
-  (function() {
-    const logoutBtn = document.getElementById('logout-btn');
-  
-    if (!logoutBtn) return; // Early exit if the logout button is not found
-  
-    logoutBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent the default link behavior
-      window.location.href = 'index.html'; // Redirect to the homepage
-    });
-  })();
-
-  

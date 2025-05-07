@@ -42,12 +42,6 @@ if (bellIcon && popup) {
     });
 }
 
-// LOGOUT BUTTON FUNCTION
-document.getElementById("logout-btn").addEventListener("click", function (e) {
-    e.preventDefault();
-    window.location.href = "index.html";
-});
-
 // PROGRESS BAR FUNCTION
 function updateProgressBar() {
     const totalTasks = document.querySelectorAll('.task-card').length;
